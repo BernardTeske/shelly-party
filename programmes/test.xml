@@ -1,0 +1,10 @@
+<programme>
+    <step duration="1">
+        <device ip="192.168.4.141" turn="on" red="255" green="0" blue="0" white="0" />
+        <device ip="192.168.4.34" turn="on" red="0" green="255" blue="0" white="0" />http://192.168.4.34/
+    </step>
+    <step duration="1">
+        <device ip="192.168.4.141" turn="on" red="0" green="255" blue="0" white="0" />
+        <device ip="192.168.4.34" turn="on" red="255" green="0" blue="0" white="0" />http://192.168.4.34/
+    </step>
+</programme>
