@@ -50,10 +50,12 @@ export class ProgrammeExecutor {
       }
 
       const step = this.programme.steps[i];
-      console.log(`Step ${i + 1}/${this.programme.steps.length}`);
+      console.log(`Step ${i + 1}/${this.programme.steps.length} - Steuere ${step.devices.length} Gerät(e) an`);
 
-      // Alle Geräte in diesem Step parallel ansteuern
+      // Alle Geräte in diesem Step parallel ansteuern und auf alle Responses warten
       await controlDevices(step.devices);
+      
+      console.log(`Step ${i + 1} abgeschlossen - alle Responses erhalten`);
 
       // Warten auf Duration (außer beim letzten Step, wenn wir wiederholen)
       if (i < this.programme.steps.length - 1 || !this.shouldStop) {

@@ -24,6 +24,7 @@ export async function controlDevice(device: Device): Promise<void> {
 }
 
 export async function controlDevices(devices: Device[]): Promise<void> {
-  await Promise.all(devices.map(device => controlDevice(device)));
+  // Warte auf alle Responses, bevor wir fortfahren
+  await Promise.allSettled(devices.map(device => controlDevice(device)));
 }
 
