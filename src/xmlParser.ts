@@ -36,7 +36,7 @@ export async function parseProgramme(filePath: string): Promise<Programme> {
           if (stepData.device) {
             devices.push(...stepData.device.map((deviceData: any) => {
               const attrs = deviceData.$;
-              return {
+              const device: Device = {
                 ip: attrs.ip,
                 turn: attrs.turn as 'on' | 'off',
                 red: parseInt(attrs.red, 10),
@@ -44,6 +44,13 @@ export async function parseProgramme(filePath: string): Promise<Programme> {
                 blue: parseInt(attrs.blue, 10),
                 white: parseInt(attrs.white, 10),
               };
+              
+              // Transition ist optional
+              if (attrs.transition) {
+                device.transition = parseInt(attrs.transition, 10);
+              }
+              
+              return device;
             }));
           }
 

@@ -1,72 +1,17 @@
 <programme>
-    <step duration="1" transition="2000">
-        <device ip="192.168.4.141" turn="on" red="255" green="0" blue="0" white="0" />
-        <device ip="192.168.4.34" turn="on" red="0" green="255" blue="0" white="0" />
-        <device ip="192.168.4.26" turn="on" red="0" green="0" blue="255" white="0" />
+    <step duration="60">
+        <device ip="192.168.4.141" turn="on" red="255" green="30" blue="0" white="0" transition="5000" />
+        <device ip="192.168.4.34" turn="on" red="0" green="119" blue="255" white="0" transition="5000"/>
+        <device ip="192.168.4.26" turn="on" red="118" green="5" blue="255" white="0" transition="5000"/>
     </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="0" green="255" blue="0" white="0" />
-        <device ip="192.168.4.34" turn="on" red="0" green="0" blue="255" white="0" />
-        <device ip="192.168.4.26" turn="on" red="255" green="0" blue="0" white="0" />
+    <step duration="60">
+        <device ip="192.168.4.141" turn="on" red="118" green="5" blue="255" white="0" transition="5000" />
+        <device ip="192.168.4.34" turn="on" red="255" green="30" blue="0" white="0" transition="5000"/>
+        <device ip="192.168.4.26" turn="on" red="0" green="119" blue="255" white="0" transition="5000"/>
     </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="0" green="0" blue="255" white="0" />
-        <device ip="192.168.4.34" turn="on" red="255" green="0" blue="0" white="0" />
-        <device ip="192.168.4.26" turn="on" red="0" green="255" blue="0" white="0" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="255" green="0" blue="0" white="0" />
-        <device ip="192.168.4.34" turn="on" red="0" green="255" blue="0" white="0" />
-        <device ip="192.168.4.26" turn="on" red="0" green="0" blue="255" white="0" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="0" green="255" blue="0" white="0" />
-        <device ip="192.168.4.34" turn="on" red="0" green="0" blue="255" white="0" />
-        <device ip="192.168.4.26" turn="on" red="255" green="0" blue="0" white="0" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="0" green="0" blue="255" white="0" />
-        <device ip="192.168.4.34" turn="on" red="255" green="0" blue="0" white="0" />
-        <device ip="192.168.4.26" turn="on" red="0" green="255" blue="0" white="0" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="255" green="0" blue="0" white="0" />
-        <device ip="192.168.4.34" turn="on" red="0" green="255" blue="0" white="0" />
-        <device ip="192.168.4.26" turn="on" red="0" green="0" blue="255" white="0" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="0" green="255" blue="0" white="0" />
-        <device ip="192.168.4.34" turn="on" red="0" green="0" blue="255" white="0" />
-        <device ip="192.168.4.26" turn="on" red="255" green="0" blue="0" white="0" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="0" green="0" blue="255" white="0" />
-        <device ip="192.168.4.34" turn="on" red="255" green="0" blue="0" white="0" />
-        <device ip="192.168.4.26" turn="on" red="0" green="255" blue="0" white="0" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="off" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.34" turn="off" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.26" turn="off" red="0" green="0" blue="0" white="255" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.34" turn="on" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.26" turn="on" red="0" green="0" blue="0" white="255" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="off" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.34" turn="off" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.26" turn="off" red="0" green="0" blue="0" white="255" />
-    </step>
-    <step duration="1">
-        <device ip="192.168.4.141" turn="on" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.34" turn="on" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.26" turn="on" red="0" green="0" blue="0" white="255" />
-    </step>
-     <step duration="1">
-        <device ip="192.168.4.141" turn="off" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.34" turn="off" red="0" green="0" blue="0" white="255" />
-        <device ip="192.168.4.26" turn="off" red="0" green="0" blue="0" white="255" />
+    <step duration="60">
+        <device ip="192.168.4.141" turn="on" red="0" green="119" blue="255" white="0" transition="5000" />
+        <device ip="192.168.4.34" turn="on" red="118" green="5" blue="155" white="0" transition="5000"/>
+        <device ip="192.168.4.26" turn="on" red="255" green="30" blue="0" white="0" transition="5000"/>
     </step>
 </programme>

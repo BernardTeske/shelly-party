@@ -2,6 +2,23 @@ import axios from 'axios';
 import { Device } from './types';
 
 export async function controlDevice(device: Device): Promise<void> {
+  // Wenn transition vorhanden ist, zuerst den transition-Endpunkt aufrufen
+  if (device.transition !== undefined) {
+    const transitionUrl = `http://${device.ip}/settings/light/0?transition=${device.transition}`;
+
+    try {
+      await axios.get(transitionUrl, { timeout: 5000 });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error(`Fehler beim Setzen der Transition für Gerät ${device.ip}: ${error.message}`);
+      } else {
+        console.error(`Unbekannter Fehler beim Setzen der Transition für Gerät ${device.ip}`);
+      }
+      // Fehler wird geloggt, aber nicht geworfen - Show läuft weiter
+    }
+  }
+
+  // Dann die Farbänderung durchführen
   const url = `http://${device.ip}/color/0`;
   const params = {
     turn: device.turn,

@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  lightshow:
+    image: ghcr.io/${GITHUB_USERNAME}/lightshow:latest
+    container_name: lightshow
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./programmes:/app/programmes
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+

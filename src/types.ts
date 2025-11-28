@@ -5,6 +5,7 @@ export interface Device {
   green: number;
   blue: number;
   white: number;
+  transition?: number;
 }
 
 export interface Step {
