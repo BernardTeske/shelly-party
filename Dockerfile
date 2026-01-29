@@ -22,8 +22,8 @@ COPY src ./src
 # Build TypeScript
 RUN yarn build
 
-# Installiere nur Production-Dependencies für späteres Kopieren
-RUN yarn install --production --frozen-lockfile --force
+# Entferne DevDependencies manuell (Yarn 4 unterstützt --production nicht direkt)
+RUN rm -rf node_modules/@types node_modules/typescript node_modules/ts-node-dev
 
 # Production-Stage
 FROM node:20-alpine
