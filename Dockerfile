@@ -30,6 +30,9 @@ RUN corepack enable && corepack prepare yarn@4.9.2 --activate
 # Kopiere Package-Dateien
 COPY package.json yarn.lock ./
 
+# Erstelle .yarnrc.yml um node_modules zu verwenden (PnP deaktivieren)
+RUN echo "nodeLinker: node-modules" > .yarnrc.yml
+
 # Installiere nur Production-Dependencies
 RUN yarn install --production --frozen-lockfile && yarn cache clean
 
