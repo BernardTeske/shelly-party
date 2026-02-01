@@ -1,8 +1,9 @@
-version: '3.8'
-
 services:
   lightshow:
-    image: ghcr.io/${GITHUB_USERNAME}/lightshow:latest
+    image: ghcr.io/bernardteske/lightshow:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: lightshow
     ports:
       - "3000:3000"
