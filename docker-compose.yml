@@ -1,15 +1,28 @@
+# Standard: Bridge-Netzwerk + Port-Mapping (z. B. Docker Desktop).
+# LAN-Geräte vom Pi aus: docker compose up -d --profile host lightshow-host
+
+x-lightshow-common: &lightshow-common
+  image: ghcr.io/bernardteske/lightshow:latest
+  build:
+    context: .
+    dockerfile: Dockerfile
+  volumes:
+    - ./programmes:/app/programmes
+  restart: unless-stopped
+  environment:
+    - PORT=3000
+
 services:
   lightshow:
-    image: ghcr.io/bernardteske/lightshow:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
+    <<: *lightshow-common
     container_name: lightshow
     ports:
       - "3000:3000"
-    volumes:
-      - ./programmes:/app/programmes
-    restart: unless-stopped
-    environment:
-      - PORT=3000
+
+  lightshow-host:
+    <<: *lightshow-common
+    profiles:
+      - host
+    container_name: lightshow-host
+    network_mode: host
 
