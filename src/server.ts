@@ -13,9 +13,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// `origin: '*'` setzt CORS-Header auf jeder echten Antwort (POST/GET/…);
+// manche Setups liefert bei `origin: true` nur die Preflight-Antwort korrekt.
 app.use(
   cors({
-    origin: true,
+    origin: '*',
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
