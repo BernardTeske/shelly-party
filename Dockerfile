@@ -14,7 +14,7 @@ COPY package.json yarn.lock ./
 COPY tsconfig.json ./
 
 # Installiere alle Dependencies (inkl. DevDependencies für Build)
-RUN yarn install --frozen-lockfile
+RUN yarn install --immutable
 
 # Kopiere Source-Code
 COPY src ./src
