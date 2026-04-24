@@ -79,6 +79,11 @@ Mit Port `3000` erreichst du die API dann unter `http://<pi-ip>:3000` (kein `-p`
 
 - `GET /status` - Gibt den aktuellen Status zurück
 
+- `GET /programmes` - Listet alle `.xml`-Dateien im Ordner `programmes/`
+  ```json
+  { "programmes": [ { "filename": "feuer.xml" }, { "filename": "hit.xml" } ] }
+  ```
+
 ## Entwicklung
 
 ```bash

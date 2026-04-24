@@ -1,3 +1,4 @@
+import { readdir } from 'fs/promises';
 import express, { Request, Response } from 'express';
 import { parseProgramme } from './xmlParser';
 import { ProgrammeExecutor } from './programmeExecutor';
@@ -62,6 +63,23 @@ app.get('/status', (req: Request, res: Response) => {
     running: executor.isExecuting(),
     show: executor.getCurrentShow(),
   });
+});
+
+const PROGRAMMES_DIR = 'programmes';
+
+app.get('/programmes', async (req: Request, res: Response) => {
+  try {
+    const names = await readdir(PROGRAMMES_DIR);
+    const xml = names
+      .filter((f) => f.toLowerCase().endsWith('.xml'))
+      .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+    res.json({ programmes: xml.map((filename) => ({ filename })) });
+  } catch (error) {
+    console.error('Fehler beim Lesen von programmes/:', error);
+    res.status(500).json({
+      error: error instanceof Error ? error.message : 'Verzeichnis nicht lesbar',
+    });
+  }
 });
 
 export function startServer(port: number = 3000): void {
