@@ -1,8 +1,26 @@
 import express, { Request, Response } from 'express';
+import cors from 'cors';
 import { parseProgramme } from './xmlParser';
 import { ProgrammeExecutor } from './programmeExecutor';
 
 const app = express();
+
+// Chrome: Dev-Server (localhost) → API im LAN (z. B. triton) erfordert oft diesen Header bei der Preflight-Anfrage
+app.use((req, res, next) => {
+  if (req.headers['access-control-request-private-network'] === 'true') {
+    res.setHeader('Access-Control-Allow-Private-Network', 'true');
+  }
+  next();
+});
+
+app.use(
+  cors({
+    origin: true,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
+
 app.use(express.json());
 
 const executor = new ProgrammeExecutor();
