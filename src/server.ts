@@ -1,27 +1,19 @@
 import express, { Request, Response } from 'express';
-import cors from 'cors';
 import { parseProgramme } from './xmlParser';
 import { ProgrammeExecutor } from './programmeExecutor';
 
 const app = express();
 
-// Chrome: Dev-Server (localhost) → API im LAN (z. B. triton) erfordert oft diesen Header bei der Preflight-Anfrage
 app.use((req, res, next) => {
-  if (req.headers['access-control-request-private-network'] === 'true') {
-    res.setHeader('Access-Control-Allow-Private-Network', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(204);
+    return;
   }
   next();
 });
-
-// `origin: '*'` setzt CORS-Header auf jeder echten Antwort (POST/GET/…);
-// manche Setups liefert bei `origin: true` nur die Preflight-Antwort korrekt.
-app.use(
-  cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
 
 app.use(express.json());
 
@@ -40,7 +32,7 @@ app.post('/start', async (req: Request, res: Response) => {
     }
 
     const programme = await parseProgramme(`programmes/${filename}`);
-    await executor.loadProgramme(programme);
+    await executor.loadProgramme(programme, filename);
     
     // Starte die Ausführung asynchron
     executor.start().catch(err => {
@@ -66,8 +58,9 @@ app.post('/stop', (req: Request, res: Response) => {
 });
 
 app.get('/status', (req: Request, res: Response) => {
-  res.json({ 
-    running: executor.isExecuting() 
+  res.json({
+    running: executor.isExecuting(),
+    show: executor.getCurrentShow(),
   });
 });
 

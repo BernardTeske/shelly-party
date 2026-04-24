@@ -60,12 +60,6 @@ Mit Port `3000` erreichst du die API dann unter `http://<pi-ip>:3000` (kein `-p`
 
 **Docker Desktop (macOS / Windows):** Der Docker-Engine läuft in einer **Linux-VM**; ausgehende Verbindungen gehen über NAT und den Prozess `com.docker.backend` — nicht so, als läge die App direkt auf deinem Mac im Heimnetz. `--network host` bewirkt hier **kein** echtes Host-Netz wie auf dem Pi. In der Praxis sieht man dann oft **Timeouts** zu Geräten unter `192.168.x.x`, obwohl `curl` vom Mac aus zur gleichen IP funktioniert. **Empfehlung zum Entwickeln mit echten Lampen:** App nativ starten (`yarn dev` / `yarn start`). Docker auf dem Mac eher für „API ohne Hardware“ oder nach dem Deploy auf dem **Pi (Linux)** nutzen. Wenn du trotzdem Container brauchst: VPN/Firewall prüfen (Traffic läuft als `com.docker.backend`), Docker-Desktop-Version (bekannte LAN-Regressionen in Release Notes), und ob Docker-interne Netze nicht mit deinem LAN-Subnetz kollidieren (Einstellungen → Netzwerk).
 
-## CORS (Frontend von anderem Host / Browser)
-
-Wenn die UI z. B. von `http://localhost:5174` und die API von `http://triton:3033` geladen wird, muss der Server **CORS** korrekt beantworten (inkl. ggf. `Access-Control-Allow-Private-Network` für Anfragen aus dem lokalen Netz in Chrome). Im Code wird dafür `cors` genutzt – bitte **neu bauen und den Dienst auf dem Zielrechner neu starten** (`yarn build` / `yarn start` bzw. neues Image deployen), sonst liefert eine alte Version weiterhin Antworten ohne CORS-Header.
-
-Alternativ: im Vite-Frontend eine **Proxy-URL** nutzen (siehe `frontend`-`.env.example`: gleiche Origin, kein CORS im Browser).
-
 ## API-Endpunkte
 
 - `POST /start` - Startet eine Show

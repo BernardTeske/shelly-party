@@ -5,9 +5,12 @@ export class ProgrammeExecutor {
   private programme: Programme | null = null;
   private isRunning: boolean = false;
   private shouldStop: boolean = false;
+  /** Basisname der XML-Datei (z. B. feuer.xml), nur gesetzt während ein Lauf aktiv ist */
+  private activeFilename: string | null = null;
 
-  async loadProgramme(programme: Programme): Promise<void> {
+  async loadProgramme(programme: Programme, filename: string): Promise<void> {
     this.programme = programme;
+    this.activeFilename = filename;
   }
 
   async start(): Promise<void> {
@@ -29,6 +32,7 @@ export class ProgrammeExecutor {
     }
 
     this.isRunning = false;
+    this.activeFilename = null;
   }
 
   stop(): void {
@@ -37,6 +41,11 @@ export class ProgrammeExecutor {
 
   isExecuting(): boolean {
     return this.isRunning;
+  }
+
+  /** Laufende Show (Dateiname) oder null, wenn idle */
+  getCurrentShow(): string | null {
+    return this.isRunning ? this.activeFilename : null;
   }
 
   private async executeProgramme(): Promise<void> {
